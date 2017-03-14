@@ -18,6 +18,7 @@ public class DoubleLinked {
         return false;
     }
 
+    //在链表的头插入
     BothWayLink insertFirst(long insertLinked) {
         BothWayLink mNewLink = new BothWayLink(insertLinked);
         if (mLastLinked == null) {
@@ -31,16 +32,20 @@ public class DoubleLinked {
         return mNewLink;
     }
 
+    //在链表末尾插入
     BothWayLink insertLast(long insertLinked) {
         BothWayLink mNewLink = new BothWayLink(insertLinked);
-        if (mLastLinked == null) {
-            mLastLinked = mNewLink;
+        if (mFirstLinked == null) {
+            mFirstLinked = mNewLink;
         } else {
-
+            mLastLinked.next = mNewLink;
+            mNewLink.previous = mLastLinked;
         }
+        mLastLinked = mNewLink;
         return mNewLink;
     }
 
+    //删除第一个
     BothWayLink deleteFirst() {
         BothWayLink tmp;
         if (isEmpty()) {
@@ -48,12 +53,14 @@ public class DoubleLinked {
         }
         tmp = mFirstLinked;
         mFirstLinked = mFirstLinked.next;
+        mFirstLinked.previous = null;
         if (mLastLinked.previous == null) {
             mLastLinked = null;
         }
         return tmp;
     }
 
+    //删除最后一个
     BothWayLink deleteLast() {
         BothWayLink tmp;
         if (isEmpty()) {
@@ -69,12 +76,13 @@ public class DoubleLinked {
         return tmp;
     }
 
+    //在节点之后删除
     void insertAfter(long key, long data) {
         if (isEmpty()) {
             return;
         }
         BothWayLink tempLink = mFirstLinked;
-        while (tempLink.mData != key) {
+        while (tempLink != null && tempLink.mData != key) {
             tempLink = tempLink.next;
         }
         if (tempLink == null) {
@@ -93,39 +101,41 @@ public class DoubleLinked {
 
     }
 
+    //删除指定的节点
     void deleteKey(long key) {
         if (isEmpty()) {
             return;
         }
         BothWayLink currentLink = mFirstLinked;
-        while (currentLink.mData != key) {
+        while (currentLink != null && currentLink.mData != key) {
             currentLink = currentLink.next;
         }
         if (currentLink == null) {
             return;
         }
         if (currentLink == mFirstLinked) {
-            mFirstLinked=currentLink.next;
-            currentLink.next.previous=null;
-        }else if (currentLink ==mLastLinked) {
+            mFirstLinked = currentLink.next;
+            currentLink.next.previous = null;
+        } else if (currentLink == mLastLinked) {
             mLastLinked = currentLink.previous;
             currentLink.previous.next = null;
-        }else {
-            currentLink.previous.next=currentLink.next;
-            currentLink.next.previous=currentLink.previous;
+        } else {
+            currentLink.previous.next = currentLink.next;
+            currentLink.next.previous = currentLink.previous;
         }
     }
-    void display(){
-        if (isEmpty()){
+
+    //显示节点
+    void display() {
+        if (isEmpty()) {
             return;
         }
-        BothWayLink mCurrentLink=mFirstLinked;
-        while (mCurrentLink!=null){
+        BothWayLink mCurrentLink = mFirstLinked;
+        while (mCurrentLink != null) {
             mCurrentLink.showLink();
+            mCurrentLink = mCurrentLink.next;
         }
     }
-
-
 }
 
 class DoubleLinedApp {
@@ -140,15 +150,16 @@ class DoubleLinedApp {
         doubleLinked.insertLast(55);
 
         doubleLinked.display();
+        System.out.println("-----------------");
 
         doubleLinked.deleteFirst();
         doubleLinked.deleteLast();
         doubleLinked.deleteKey(11);
 
         doubleLinked.display();
-
-        doubleLinked.insertAfter(22,77);
-        doubleLinked.insertAfter(33,88);
+        System.out.println("-----------------");
+        doubleLinked.insertAfter(22, 77);
+        doubleLinked.insertAfter(33, 88);
 
         doubleLinked.display();
 
