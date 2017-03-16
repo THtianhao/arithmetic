@@ -24,6 +24,10 @@ class LinkList {
         mFirst = null;
     }
 
+    public Link getFirst() {
+        return mFirst;
+    }
+
     public boolean isEmpty() {
         return mFirst == null;
     }
@@ -48,6 +52,10 @@ class LinkList {
                 current = current.next;
             }
         }
+    }
+
+    public ListIterator getIterator() {
+        return new ListIterator();
     }
 
     public Link find(int key) {
@@ -78,6 +86,10 @@ class LinkList {
             currentLink = currentLink.next;
         }
         return null;
+    }
+
+    public void setFirst(Link first) {
+        this.mFirst = first;
     }
 }
 
