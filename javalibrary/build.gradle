@@ -1,7 +1,17 @@
 apply plugin: 'java'
 
+allprojects {
+    repositories {
+        jcenter()
+        google()
+    }
+}
+
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.orhanobut:logger:2.2.0'
+
+
 }
 
 sourceCompatibility = "1.7"
