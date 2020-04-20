@@ -1,6 +1,7 @@
 package com.example.chapter1.排序;
 
 import java.util.Arrays;
+import java.util.PriorityQueue;
 /*
 快排思想，找到一个基准（一般在数组的最左边），小于基准的放到基准左边，大于基准的放到基准右边
 查找：先找两个数，从右边往左边找找到一个小于基准的(每次必须是右边先走)
@@ -10,38 +11,59 @@ import java.util.Arrays;
 移动：结束后最后的数字要和基准换位置。
 递归：再以基准一分为二左右递归。
 所有结束：传入的参数相等那么就结束
+错误点：注意>=和<=
+        一定要从右往左判断
  */
 
 public class QuickSort {
     public static void main(String[] args) {
+        //快排序
         int[] array = new int[]{8, 9, 1, 7, 3, 4, 6, 2, 5, 6, 13, 15};
         int left = 0, right = array.length - 1;
         quickSort(array, left, right);
         System.out.println(Arrays.toString(array));
+        //小顶堆排序
+
+//        heapSort(array,3);
+
     }
 
-    private static void quickSort(int[] arrya, int left, int right) {
-        if (left > right) {
+    /*
+    快排
+     */
+    static void quickSort(int [] nums, int low, int high) {
+        if (low > high) {
             return;
         }
-        left++;
-        while (left < right) {
-            while (arrya[right] < left) {
-                right--;
+        int i = low, j = high, temp = nums[low];
+        while (i < j) {
+            while (nums[j] >= temp && i < j) {
+                j--;
             }
-            while (arrya[left] > arrya[0]) {
-                left++;
+            while (nums[i] <= temp  && i < j) {
+                i++;
             }
-            swap(arrya, left, right);
+            swap(nums, i, j);
         }
-        swap(arrya, arrya[0], left);
-        quickSort(arrya, 0, left);
-        quickSort(arrya, left, arrya.length - 1);
+        swap(nums, low, i);
+        quickSort(nums, low, i - 1);
+        quickSort(nums, i + 1, high);
     }
 
-    public static void swap(int[] arr, int i, int j) {
-        int temp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = temp;
+    static void swap(int [] nums, int left, int right){
+        int tmp = nums[left];
+        nums[left] = nums[right];
+        nums[right] = tmp;
+    }
+
+    static int heapSort(int [] nums, int k) {
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+        for (int e : nums) {
+            minHeap.add(e);
+            if (minHeap.size() > k) {
+                minHeap.poll();
+            }
+        }
+        return minHeap.peek();
     }
 }
