@@ -1,6 +1,10 @@
 package com.example.leetcode;
 
 public class LeetCode0075 {
+    /**
+     * 三指针交换，精髓在++ ,--
+     */
+
 
     public static void main(String [] args) {
         int [] nums = new int[]{2, 0, 1};
