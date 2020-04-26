@@ -1,6 +1,6 @@
 package com.example.leetcode.贪心算法;
 
-public class LeetCode0605 {
+public class LeetCode0605种花 {
 
     public boolean canPlaceFlowers(int[] flowerbed, int n) {
         int flowCount = 0, index = 1;
