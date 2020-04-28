@@ -6,7 +6,7 @@ import java.util.List;
 public class LeetCode0765找集合 {
     public static void main(String [] args) {
         String s = "ababcbacadefegdehijhklij";
-        System.out.println(partitionLabels(s));
+        System.out.println(3 >> 1);
     }
 
     public static List<Integer> partitionLabels(String s) {
