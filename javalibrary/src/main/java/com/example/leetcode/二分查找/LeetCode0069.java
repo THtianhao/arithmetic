@@ -3,6 +3,7 @@ package com.example.leetcode.二分查找;
 public class LeetCode0069 {
 
     public static void main(String[] args) {
+        int a  = 2126753390>>>1;
         System.out.println(mySqrt2(8));
     }
 

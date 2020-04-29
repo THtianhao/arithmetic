@@ -10,3 +10,5 @@
 * 数组转List `Arrays.asList(result.getTb_name().split(","))`
 * List转数组 `list.toArray(new String[]{});`
 
+#### 二分查找终止条件的判断
+就找临界点去看看挨着的地方是否能跑的通？如果跑的通说明二分查找的终止条件可以。
