@@ -2,7 +2,7 @@ package com.example.leetcode.动态规划;
 
 import java.util.Arrays;
 
-public class LeetCode0300 {
+public class LeetCode0300and贪心 {
     public static void main(String [] args) {
         int[] array = new int[]{
 
