@@ -18,6 +18,9 @@ public class LeetCode0139 {
         for (int i = 0; i < wordDict.size(); i++) {
             for (int j = 1; j <= s.length(); j++) {
             }
+        }{
+            for (int j = 1; j <= s.length(); j++) {
+            }
         }
         return dp[s.length()][s.length()];
     }
